@@ -1,0 +1,69 @@
+<?php
+// Inicia a sessão para verificar se o utilizador está logado na intranet.
+@session_start();
+
+// Se a variável de sessão 'Recemail' não existir, redireciona para a página principal da intranet.
+if (!isset($_SESSION['Recemail']) || empty($_SESSION['Recemail'])) {
+    header('Location: https://www.solovivo.com.br/SoloVivo/Intranet/intranet.php');
+    exit; // Garante que o resto do script não é executado.
+}
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Compras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="https://www.solovivo.com.br/SoloVivo/Intranet/intranet.php" style="text-decoration: none;">
+                    <span class="sidebar-title">Gestão de Compras</span>
+                </a>
+            </div>
+            <ul class="sidebar-menu">
+                <!-- Itens do menu serão gerados pelo main.js -->
+            </ul>
+        </nav>
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="page-title">Carregando...</h1>
+            </header>
+            <section id="app-content">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    
+    <!-- Scripts da Aplicação -->
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/fornecedores.js"></script>
+    <script src="assets/js/solicitacoes.js"></script>
+    <script src="assets/js/ordens.js"></script>
+    <script src="assets/js/produtos.js"></script>
+    <script src="assets/js/cotacao.js"></script>
+
+    <!-- Bibliotecas para Geração de PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    
+    <!-- JavaScript da biblioteca Choices.js -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+    <!-- Biblioteca Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
